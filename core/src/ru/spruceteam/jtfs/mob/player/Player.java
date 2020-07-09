@@ -3,6 +3,8 @@ package ru.spruceteam.jtfs.mob.player;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import ru.spruceteam.jtfs.AssetManager;
 import ru.spruceteam.jtfs.Core;
@@ -22,7 +24,10 @@ public class Player extends Mob {
     //Actions
     private final MoveAction moveAction;
 
-    public Player(String name, Level level) {
+    //Listener
+    private final ClickListener focusCameraClickListener;
+
+    public Player(String name, final Level level) {
         super(new GridPoint(0,0), name);
         Core.getCore().manager.load("items/items.atlas", TextureAtlas.class);
         moveAction = new MoveAction(level);
@@ -30,6 +35,12 @@ public class Player extends Mob {
             @Override
             public void onLoadFinish(AssetManager manager) {
                 items = new Items(Core.getCore().manager.get("items/items.atlas", TextureAtlas.class));
+            }
+        });
+        addListener(focusCameraClickListener = new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                level.setFocusedOnPlayer(true);
             }
         });
     }
