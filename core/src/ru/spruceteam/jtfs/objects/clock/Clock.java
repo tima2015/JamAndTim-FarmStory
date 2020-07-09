@@ -3,18 +3,14 @@ package ru.spruceteam.jtfs.objects.clock;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 
 import ru.spruceteam.jtfs.Core;
-import ru.spruceteam.jtfs.Drawable;
-import ru.spruceteam.jtfs.Positionable;
-import ru.spruceteam.jtfs.Sizable;
-import ru.spruceteam.jtfs.levels.world.location.GridPoint;
 
-public class Clock implements Drawable, Positionable.PosDrawable, Sizable {
+public class Clock  extends Actor { //TODO another actor
 
     private static final String TAG = "Clock";
 
@@ -34,7 +30,6 @@ public class Clock implements Drawable, Positionable.PosDrawable, Sizable {
     }
 
 
-    @Override
     public void draw(Batch batch, float x, float y) {
         bg.setPosition(x,y);
         bg.draw(batch);
@@ -50,7 +45,6 @@ public class Clock implements Drawable, Positionable.PosDrawable, Sizable {
         }
     }
 
-    @Override
     public void draw(Batch batch) {
         this.draw(batch, pos.x, pos.y);
     }

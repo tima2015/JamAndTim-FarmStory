@@ -4,9 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import ru.spruceteam.jtfs.Resizable;
-
-public abstract class Render implements Disposable, Resizable {
+public abstract class Render implements Disposable {
 
     protected final SpriteBatch batch = new SpriteBatch();
     protected final Viewport viewport;
@@ -22,7 +20,6 @@ public abstract class Render implements Disposable, Resizable {
 
     protected abstract void draw(float delta);
 
-    @Override
     public void resize(int width, int height) {
         viewport.update(width, height, true);
     }

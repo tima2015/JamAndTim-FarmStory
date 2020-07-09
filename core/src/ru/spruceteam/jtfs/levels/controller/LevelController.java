@@ -1,18 +1,14 @@
 package ru.spruceteam.jtfs.levels.controller;
 
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g3d.utils.CameraInputController;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import ru.spruceteam.jtfs.levels.Level;
-import ru.spruceteam.jtfs.Updatable;
 
-public class LevelController implements Updatable {
+public class LevelController {
 
     //###########################
     private final Level level;//#
@@ -36,7 +32,6 @@ public class LevelController implements Updatable {
         inputProcessor.addProcessor(level.getStage());
     }
 
-    @Override
     public void update(float delta) {
         level.getTime().update(delta);
         cameraController.update(delta);

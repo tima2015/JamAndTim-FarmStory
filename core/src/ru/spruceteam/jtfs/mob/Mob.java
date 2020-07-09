@@ -1,6 +1,5 @@
 package ru.spruceteam.jtfs.mob;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -16,9 +15,6 @@ import java.util.Properties;
 
 import ru.spruceteam.jtfs.AssetManager;
 import ru.spruceteam.jtfs.Core;
-import ru.spruceteam.jtfs.Drawable;
-import ru.spruceteam.jtfs.Positionable;
-import ru.spruceteam.jtfs.Updatable;
 import ru.spruceteam.jtfs.levels.world.location.GridPoint;
 
 public abstract class Mob extends Actor{
@@ -44,7 +40,7 @@ public abstract class Mob extends Actor{
     }
 
     public enum State{
-        STAY, WALK
+        STAY, WALK, ACTION
     }
 
     protected Direction direction = Direction.DOWN;
@@ -96,9 +92,8 @@ public abstract class Mob extends Actor{
         drawable.setRegion(frame);
         setSize(size.x, size.y);
         drawable.setSize(size.x, size.y);
-        drawable.setAlpha(parentAlpha);
         drawable.setPosition(pos.x + deltaPos.x + size.x*.5f, pos.y + deltaPos.y);
-        drawable.draw(batch);
+        drawable.draw(batch, parentAlpha);
     }
 
     @Override

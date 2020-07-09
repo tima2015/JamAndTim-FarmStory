@@ -3,9 +3,7 @@ package ru.spruceteam.jtfs.levels.world;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 
-import ru.spruceteam.jtfs.Updatable;
-
-public class Time implements Updatable {
+public class Time {
 
     private static final String TAG = "Time";
 
@@ -54,7 +52,6 @@ public class Time implements Updatable {
         nextDay();
     }
 
-    @Override
     public void update(float delta) {
         if (time < MAX_TIME){
             time += 10*delta;

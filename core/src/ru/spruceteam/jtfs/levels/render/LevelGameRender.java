@@ -50,9 +50,6 @@ public class LevelGameRender extends Render{
     protected void draw(float delta) {
         setShadeLevel();
         batch.begin();
-        for (TransferPoint point : level.getLocation().getTransferPoints()) {
-            transfer.draw(batch, point.pos.x, point.pos.y);
-        }
         //mapDebugRender.draw(batch, level.getLocation().getMap().getLayers().get("objects"));
         batch.end();
         debugDraw();

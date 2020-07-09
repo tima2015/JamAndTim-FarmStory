@@ -8,11 +8,10 @@ import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
-import ru.spruceteam.jtfs.Updatable;
 import ru.spruceteam.jtfs.levels.Level;
 import ru.spruceteam.jtfs.levels.world.location.GridPoint;
 
-public class CameraController implements Updatable, InputProcessor, GestureDetector.GestureListener {
+public class CameraController implements InputProcessor, GestureDetector.GestureListener {
 
     private OrthographicCamera camera;
     private Level level;
@@ -30,7 +29,6 @@ public class CameraController implements Updatable, InputProcessor, GestureDetec
         this.level = level;
     }
 
-    @Override
     public void update(float delta) {
         if (!level.isFocusedOnPlayer()) {
             Vector3 nor = new Vector3(Vector3.Zero);

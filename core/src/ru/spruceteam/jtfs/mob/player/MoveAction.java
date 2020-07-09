@@ -12,6 +12,7 @@ import ru.spruceteam.jtfs.levels.Level;
 import ru.spruceteam.jtfs.levels.world.location.GridPoint;
 import ru.spruceteam.jtfs.mob.Mob;
 import ru.spruceteam.jtfs.mob.MobPath;
+import ru.spruceteam.jtfs.objects.GameObject;
 
 public class MoveAction extends TemporalAction {
 
@@ -41,7 +42,12 @@ public class MoveAction extends TemporalAction {
     protected void end() {
         Gdx.app.debug(TAG, "end() called");
         level.getPlayer().setState(Mob.State.STAY);
-        if (to.getObject() != null) to.getObject().executeCommands();
+        if (to.getObject() != null) {
+            GameObject.PlayerExecuteObjectTaskEvent event =
+                    new GameObject.PlayerExecuteObjectTaskEvent();
+            event.setTarget(to.getObject());
+            to.getObject().notify(event, false);
+        }
         setDirection();
     }
 

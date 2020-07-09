@@ -5,9 +5,7 @@ import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-import ru.spruceteam.jtfs.Drawable;
-
-public abstract class Item implements Drawable {
+public abstract class Item {
 
     private final String TAG = getClass().getSimpleName();
 
@@ -18,7 +16,6 @@ public abstract class Item implements Drawable {
         this.region = region;
     }
 
-    @Override
     public void draw(Batch batch, float x, float y) {
         batch.draw(region, x,y);
     }
