@@ -15,6 +15,7 @@ import ru.spruceteam.jtfs.Core;
 import ru.spruceteam.jtfs.levels.Level;
 import ru.spruceteam.jtfs.levels.world.TransferPoint;
 import ru.spruceteam.jtfs.mob.player.Player;
+import ru.spruceteam.jtfs.objects.GameObject;
 
 public class Location extends Group implements Disposable {
 
@@ -25,7 +26,6 @@ public class Location extends Group implements Disposable {
     private OrthogonalTiledMapRenderer mapRenderer;
     private final TransferPoint transfer;
     private final Level level;
-    private TransferPoint[] transferPoints;
     private Grid grid;
     private boolean begin = false;
     //locationswithpoint
@@ -38,10 +38,6 @@ public class Location extends Group implements Disposable {
                     setMap(manager.get(Location.this.transfer.target, TiledMap.class));
                     Array<RectangleMapObject> points = map.getLayers().get("points")
                             .getObjects().getByType(RectangleMapObject.class);
-                    transferPoints = new TransferPoint[points.size];
-                    for (int i = 0; i < transferPoints.length; i++) {
-                        transferPoints[i] = new TransferPoint(points.get(i));
-                    }
                 }
             };
 
@@ -80,10 +76,6 @@ public class Location extends Group implements Disposable {
         return transfer;
     }
 
-    public TransferPoint[] getTransferPoints() {
-        return transferPoints;
-    }
-
     public Grid getGrid() {
         return grid;
     }
@@ -116,5 +108,12 @@ public class Location extends Group implements Disposable {
         manager.unload(transfer.target);
         manager.removeOnLoadFinishListener(onLoadFinishListener);
         mapRenderer.dispose();
+        for (int x = 0; x < grid.points.length; x++) {
+            for (int y = 0; y < grid.points[x].length; y++) {
+                GameObject object = grid.points[x][y].getObject();
+                if (object instanceof Disposable)
+                    ((Disposable) object).dispose();
+            }
+        }
     }
 }

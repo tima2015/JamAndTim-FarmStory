@@ -94,6 +94,7 @@ public abstract class Mob extends Actor{
         drawable.setSize(size.x, size.y);
         drawable.setPosition(pos.x + deltaPos.x + size.x*.5f, pos.y + deltaPos.y);
         drawable.draw(batch, parentAlpha);
+        setZIndex(10);
     }
 
     @Override

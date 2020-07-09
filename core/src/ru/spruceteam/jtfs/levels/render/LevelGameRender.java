@@ -1,26 +1,17 @@
 package ru.spruceteam.jtfs.levels.render;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import ru.spruceteam.jtfs.AssetManager;
 import ru.spruceteam.jtfs.Core;
 import ru.spruceteam.jtfs.debug.MapDebugRender;
 import ru.spruceteam.jtfs.levels.Level;
-import ru.spruceteam.jtfs.levels.world.TransferPoint;
-import ru.spruceteam.jtfs.levels.world.location.GridPoint;
-import ru.spruceteam.jtfs.objects.Transfer;
 
 public class LevelGameRender extends Render{
 
@@ -29,7 +20,6 @@ public class LevelGameRender extends Render{
     private final Level level;
 
     private MapDebugRender mapDebugRender;
-    private Transfer transfer = new Transfer();
 
     public LevelGameRender(Level level) {
         super(level.getStage().getViewport());
@@ -85,7 +75,7 @@ public class LevelGameRender extends Render{
         Core.getCore().manager.removeOnLoadFinishListener(onLoadFinishListener);
         debugFont.dispose();
         mapDebugRender.dispose();
-        transfer.dispose();debugBatch.dispose();//todo fixme
+        debugBatch.dispose();//todo fixme
     }
 
     private BitmapFont debugFont = new BitmapFont();

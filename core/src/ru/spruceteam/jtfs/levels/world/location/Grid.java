@@ -16,6 +16,7 @@ import com.badlogic.gdx.utils.Array;
 import ru.spruceteam.jtfs.Core;
 import ru.spruceteam.jtfs.LevelScreen;
 import ru.spruceteam.jtfs.levels.Level;
+import ru.spruceteam.jtfs.levels.world.TransferPoint;
 import ru.spruceteam.jtfs.objects.GameObjectFactory;
 
 /**
@@ -67,6 +68,19 @@ public class Grid {
             GridPoint point = points[(int) rectangle.x / 16][(int) rectangle.y / 16];
             point.setCost(GridPoint.BARRIER_COST);
             point.setObject(gameObjectFactory.createObject(object.getName(), point));
+        }
+
+        for (RectangleMapObject object :
+                map.getLayers().get("points").getObjects().getByType(RectangleMapObject.class)){
+            Rectangle rectangle = object.getRectangle();
+            MapProperties prop = object.getProperties();
+            GridPoint pos = points[(int) rectangle.x / 16][(int) rectangle.y / 16];
+
+            TransferPoint point = new TransferPoint(pos,
+                    prop.get("target", String.class),
+                    new GridPoint(prop.get("playerOnTargetPositionX", Integer.class),
+                            prop.get("playerOnTargetPositionY", Integer.class)));
+            pos.setObject(point);
         }
     }
 }
