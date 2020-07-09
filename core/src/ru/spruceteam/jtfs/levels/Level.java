@@ -8,6 +8,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
+import java.util.Hashtable;
+
 import ru.spruceteam.jtfs.AssetManager;
 import ru.spruceteam.jtfs.Core;
 import ru.spruceteam.jtfs.levels.world.Time;
@@ -26,6 +28,7 @@ public class Level implements Disposable { //extends Stage
     Player player;
     private final Time time = new Time();
     private final Stage stage = new Stage(new FitViewport(24,24));
+    public final Hashtable<String, String> hash = new Hashtable<>();
     //location.getGrid().points[(int)point.x] [(int)point.y]
 
     public Level(){

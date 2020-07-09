@@ -29,12 +29,12 @@ public class TransferPoint extends GameObject implements Disposable {
         this.target = target;
         this.playerOnTargetPosition = playerOnTargetPosition;
 
-        Pixmap pixmap = new Pixmap(32, 32, Pixmap.Format.RGBA8888);
+        Pixmap pixmap = new Pixmap(128, 128, Pixmap.Format.RGBA8888);
         pixmap.setColor(Color.CYAN);
-        pixmap.fill();
-        for (int i = 4; i < 16; i+= 4) {
-            pixmap.drawCircle(16,16,i);
-        }
+        for (int x = 12; x < 128; x+= 24)
+            for (int y = 12; y < 128; y+= 24) {
+                pixmap.fillCircle(x,y,8);
+            }
         texture = new Texture(pixmap);
         sprite.setTexture(texture);
         sprite.setSize(1,1);
@@ -50,7 +50,8 @@ public class TransferPoint extends GameObject implements Disposable {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        sprite.draw(batch,parentAlpha);
+        //sprite.draw(batch,parentAlpha);
+        batch.draw(texture, getX(), getY(), getWidth(), getHeight());
     }
 
     @Override
