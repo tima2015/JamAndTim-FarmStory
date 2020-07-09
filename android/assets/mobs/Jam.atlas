@@ -1,0 +1,89 @@
+Jam.png
+size: 1595, 982
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+DOWN0
+  rotate: false
+  xy: 982, 1
+  size: 305, 490
+  orig: 325, 490
+  offset: 9, 0
+  index: -1
+DOWN1
+  rotate: false
+  xy: 982, 493
+  size: 305, 488
+  orig: 325, 490
+  offset: 9, 2
+  index: -1
+DOWN2
+  rotate: false
+  xy: 1289, 1
+  size: 305, 489
+  orig: 325, 490
+  offset: 9, 1
+  index: -1
+LEFT0
+  rotate: false
+  xy: 1, 1
+  size: 325, 488
+  orig: 325, 490
+  offset: 0, 1
+  index: -1
+LEFT1
+  rotate: false
+  xy: 328, 1
+  size: 325, 486
+  orig: 325, 490
+  offset: 0, 4
+  index: -1
+LEFT2
+  rotate: false
+  xy: 655, 1
+  size: 325, 485
+  orig: 325, 490
+  offset: 0, 4
+  index: -1
+RIGHT0
+  rotate: false
+  xy: 1, 491
+  size: 325, 488
+  orig: 325, 490
+  offset: 0, 1
+  index: -1
+RIGHT1
+  rotate: false
+  xy: 328, 489
+  size: 325, 486
+  orig: 325, 490
+  offset: 0, 4
+  index: -1
+RIGHT2
+  rotate: false
+  xy: 655, 488
+  size: 325, 485
+  orig: 325, 490
+  offset: 0, 4
+  index: -1
+UP0
+  rotate: false
+  xy: 1289, 492
+  size: 305, 488
+  orig: 325, 490
+  offset: 10, 0
+  index: -1
+UP1
+  rotate: false
+  xy: 1289, 492
+  size: 305, 488
+  orig: 325, 490
+  offset: 10, 0
+  index: -1
+UP2
+  rotate: false
+  xy: 1289, 492
+  size: 305, 488
+  orig: 325, 490
+  offset: 10, 0
+  index: -1
