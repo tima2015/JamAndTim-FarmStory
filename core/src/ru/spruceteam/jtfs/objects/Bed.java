@@ -9,17 +9,18 @@ import ru.spruceteam.jtfs.Command;
 import ru.spruceteam.jtfs.Core;
 import ru.spruceteam.jtfs.LevelScreen;
 import ru.spruceteam.jtfs.levels.Level;
+import ru.spruceteam.jtfs.levels.world.location.GridPoint;
 import ru.spruceteam.jtfs.ui.DialogScreenFactory;
 
 public class Bed extends GameObject{
 
-    public Bed() {
-        super("bed");
+    public Bed(GridPoint pos) {
+        super("bed", pos);
         commands.add(new OpenSaveMenuCommand());
     }
 
     @Override
-    public void draw(Batch batch, float x, float y) {
+    public void draw(Batch batch, float parentAlpha) {
 
     }
 

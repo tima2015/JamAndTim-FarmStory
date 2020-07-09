@@ -66,7 +66,7 @@ public class Grid {
             Rectangle rectangle = object.getRectangle();
             GridPoint point = points[(int) rectangle.x / 16][(int) rectangle.y / 16];
             point.setCost(GridPoint.BARRIER_COST);
-            point.setObject(gameObjectFactory.createObject(object.getName()));
+            point.setObject(gameObjectFactory.createObject(object.getName(), point));
         }
     }
 }

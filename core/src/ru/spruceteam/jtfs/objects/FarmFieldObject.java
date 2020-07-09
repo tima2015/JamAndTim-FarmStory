@@ -7,13 +7,13 @@ import ru.spruceteam.jtfs.levels.Level;
 class FarmFieldObject extends GameObject{
 
     FarmFieldObject() {
-        super("farm_field");
+        super("farm_field", null);
     }
 
     int plantDay = -1;
 
     @Override
-    public void draw(Batch batch, float x, float y) {
+    public void draw(Batch batch, float parentAlpha) {
 
     }
 }

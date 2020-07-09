@@ -62,6 +62,10 @@ public class Location extends Group implements Disposable {
         Player player = level.getPlayer();
         addActor(player);
         addListener(player.getMoveActionClickListener());
+        for (int x = 0; x < grid.points.length; x++)
+            for (int y = 0; y < grid.points[x].length; y++)
+                if (grid.points[x][y].getObject() != null)
+                    addActor(grid.points[x][y].getObject());
 
         player.setPosition(transfer.playerOnTargetPosition);
         begin = true;
