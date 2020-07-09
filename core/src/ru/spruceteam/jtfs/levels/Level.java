@@ -1,5 +1,6 @@
 package ru.spruceteam.jtfs.levels;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -31,6 +32,7 @@ public class Level implements Disposable { //extends Stage
         AssetManager manager = Core.getCore().manager;
         manager.load("mobs/Jam.atlas", TextureAtlas.class);
         manager.load("items/items.atlas", TextureAtlas.class);
+        stage.setDebugAll(Gdx.app.getLogLevel() == Application.LOG_DEBUG);
     }
 
     public boolean isFocusedOnPlayer() {

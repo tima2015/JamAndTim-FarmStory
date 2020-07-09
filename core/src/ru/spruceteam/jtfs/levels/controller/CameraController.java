@@ -47,6 +47,7 @@ public class CameraController implements Updatable, InputProcessor, GestureDetec
             Vector2 deltaPos = level.getPlayer().getDeltaPos();
             camera.position.lerp(new Vector3(position.x + deltaPos.x + level.getPlayer().getSize().x,
                     position.y + deltaPos.y + level.getPlayer().getSize().y, 0), 0.05f);
+            level.setFocusedOnPlayer(!(leftPressed || rightPressed || downPressed || upPressed));
         }
         if (camera.zoom > 1) camera.zoom = 1;
         if (camera.zoom < .1f) camera.zoom = .1f;

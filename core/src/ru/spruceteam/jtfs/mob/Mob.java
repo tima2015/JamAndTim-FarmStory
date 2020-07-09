@@ -94,6 +94,7 @@ public abstract class Mob extends Actor{
         TextureRegion frame = animation.getKeyFrame(time);
         size = new Vector2(frame.getRegionWidth(), frame.getRegionHeight()).nor();
         drawable.setRegion(frame);
+        setSize(size.x, size.y);
         drawable.setSize(size.x, size.y);
         drawable.setAlpha(parentAlpha);
         drawable.setPosition(pos.x + deltaPos.x + size.x*.5f, pos.y + deltaPos.y);
@@ -103,6 +104,7 @@ public abstract class Mob extends Actor{
     @Override
     public void act(float delta) {
         super.act(delta);
+        setPosition(pos.x + deltaPos.x + size.x*.5f, pos.y + deltaPos.y);
         time = state == State.STAY ? 0 : time + delta;
         if (time > animations.get(0).getAnimationDuration())
             time = 0;
