@@ -1,5 +1,6 @@
 package ru.spruceteam.jtfs.levels.world;
 
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
@@ -9,10 +10,17 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Event;
+import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.utils.Disposable;
 
+import ru.spruceteam.jtfs.Core;
+import ru.spruceteam.jtfs.LevelScreen;
+import ru.spruceteam.jtfs.LoadingScreen;
+import ru.spruceteam.jtfs.levels.Level;
 import ru.spruceteam.jtfs.levels.world.location.GridPoint;
 import ru.spruceteam.jtfs.objects.GameObject;
 
@@ -24,7 +32,7 @@ public class TransferPoint extends GameObject implements Disposable {
     private Texture texture;//TOdO normal texture
     private final Sprite sprite = new Sprite();
 
-    public TransferPoint(GridPoint pos, String target, GridPoint playerOnTargetPosition) {
+    public TransferPoint(GridPoint pos, final String target, GridPoint playerOnTargetPosition) {
         super("transferPoint",pos);
         this.target = target;
         this.playerOnTargetPosition = playerOnTargetPosition;
@@ -40,6 +48,19 @@ public class TransferPoint extends GameObject implements Disposable {
         sprite.setSize(1,1);
         sprite.setPosition(pos.x, pos.y);
         pixmap.dispose();
+        addListener(new EventListener() {
+            @Override
+            public boolean handle(Event event) {
+                if (event instanceof GameObject.PlayerExecuteObjectTaskEvent){
+                    Core.getCore().manager.load(target, TiledMap.class);
+                    LevelScreen levelScreen = (LevelScreen) Core.getCore().getScreen();
+                    levelScreen.getLevel().getLocation().setTransfer(TransferPoint.this);
+                    Core.getCore().setScreen(new LoadingScreen(levelScreen));
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     private TransferPoint(){

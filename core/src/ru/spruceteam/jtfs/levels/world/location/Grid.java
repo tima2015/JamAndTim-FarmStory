@@ -58,14 +58,14 @@ public class Grid {
         float[] vertices = barrier.getTransformedVertices();
         barrierPoints = new GridPoint[vertices.length/2];
         for (int i = 0; i < vertices.length; i += 2) {
-            GridPoint point = points[(int) (vertices[i]) / 16][(int) (vertices[i + 1]) / 16];
+            GridPoint point = points[(int) (vertices[i]) / 32][(int) (vertices[i + 1]) / 32];
             point.setCost(GridPoint.BARRIER_COST);
             barrierPoints[i/2] = point;
         }
         GameObjectFactory gameObjectFactory = new GameObjectFactory();
         for (RectangleMapObject object : objects.getByType(RectangleMapObject.class)) {
             Rectangle rectangle = object.getRectangle();
-            GridPoint point = points[(int) rectangle.x / 16][(int) rectangle.y / 16];
+            GridPoint point = points[(int) rectangle.x / 32][(int) rectangle.y / 32];
             point.setCost(GridPoint.BARRIER_COST);
             point.setObject(gameObjectFactory.createObject(object.getName(), point));
         }
@@ -74,7 +74,7 @@ public class Grid {
                 map.getLayers().get("points").getObjects().getByType(RectangleMapObject.class)){
             Rectangle rectangle = object.getRectangle();
             MapProperties prop = object.getProperties();
-            GridPoint pos = points[(int) rectangle.x / 16][(int) rectangle.y / 16];
+            GridPoint pos = points[(int) rectangle.x / 32][(int) rectangle.y / 32];
 
             TransferPoint point = new TransferPoint(pos,
                     prop.get("target", String.class),

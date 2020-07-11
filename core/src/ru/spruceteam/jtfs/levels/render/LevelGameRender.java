@@ -39,11 +39,11 @@ public class LevelGameRender extends Render{
     @Override
     protected void draw(float delta) {
         setShadeLevel();
+        level.getStage().draw();
         batch.begin();
         //mapDebugRender.draw(batch, level.getLocation().getMap().getLayers().get("objects"));
         batch.end();
-        debugDraw();
-        level.getStage().draw();
+        //debugDraw();
     }
 
     private void setShadeLevel(){

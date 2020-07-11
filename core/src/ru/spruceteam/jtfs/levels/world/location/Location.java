@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
+import com.badlogic.gdx.maps.tiled.renderers.OrthoCachedTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
@@ -24,7 +25,7 @@ public class Location extends Group implements Disposable {
 
     private TiledMap map;
     private OrthogonalTiledMapRenderer mapRenderer;
-    private final TransferPoint transfer;
+    private TransferPoint transfer;
     private final Level level;
     private Grid grid;
     private boolean begin = false;
@@ -36,8 +37,6 @@ public class Location extends Group implements Disposable {
                 @Override
                 public void onLoadFinish(AssetManager manager) {
                     setMap(manager.get(Location.this.transfer.target, TiledMap.class));
-                    Array<RectangleMapObject> points = map.getLayers().get("points")
-                            .getObjects().getByType(RectangleMapObject.class);
                 }
             };
 
@@ -49,7 +48,7 @@ public class Location extends Group implements Disposable {
         manager.addOnLoadFinishListener(onLoadFinishListener);
         setPosition(0, 0);
         setSize(24, 24);
-        mapRenderer = new OrthogonalTiledMapRenderer(null, 1 / 16f, level.getStage().getBatch());
+        mapRenderer = new OrthogonalTiledMapRenderer(null, 1 / 32f, level.getStage().getBatch());
     }
 
     public void begin() {
@@ -96,10 +95,15 @@ public class Location extends Group implements Disposable {
 
     public void setMap(TiledMap map) {
         //Maybe I must do dispose?
+        clearChildren();
         this.map = map;
         grid = new Grid(map);
         mapRenderer.setMap(map);
         begin = false;
+    }
+
+    public void setTransfer(TransferPoint transfer) {
+        this.transfer = transfer;
     }
 
     @Override

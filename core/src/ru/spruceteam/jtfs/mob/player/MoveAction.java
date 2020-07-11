@@ -119,6 +119,8 @@ public class MoveAction extends TemporalAction {
         @Override
         public void clicked(InputEvent event, float x, float y) {
             Gdx.app.debug(TAG, "clicked() called with: x = [" + x + "], y = [" + y + "]");
+            if (level.getPlayer().getActions().contains(MoveAction.this, true))
+                return;
             to = level.getLocation().getGrid().points[(int) x][(int) y];
             from = level.getPlayer().getPosition();
             path.clear();
